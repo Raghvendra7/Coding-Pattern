@@ -1,6 +1,6 @@
 THINKING process behind Dynamic Programming so that you can solve these questions on your own.
 
-Category
+# 1 Category
 Most dynamic programming questions can be boiled down to a few categories. It's important to recognize the category because it allows us to FRAME a new question into something we already know. Frame means use the framework, not copy an approach from another problem into the current problem. You must understand that every DP problem is different.
 
 Question: Identify this problem as one of the categories below before continuing.
@@ -16,7 +16,7 @@ Why 0/1 Knapsack? Our 'Capacity' is the target we want to reach 'S'. Our 'Items'
 
 What is the variation? The twist on this problem from standard knapsack is that we must add ALL items in the subset to our knapsack. We can reframe the question into adding the positive or negative value of the current number to our knapsack in order to reach the target capacity 'S'.
 
-States
+# 2 States
 What variables we need to keep track of in order to reach our optimal result? This Quora post explains state beautifully, so please refer to this link if you are confused: www.quora.com/What-does-a-state-represent-in-terms-of-Dynamic-Programming
 
 Question: Determine State variables.
@@ -27,7 +27,7 @@ Why Index? Index represents the index of the input subset we are considering. Th
 
 Why Current Sum? The question asks us if we can sum every item (either the positive or negative value of that item) in the subset to reach the target value. Current Sum gives us the sum of all the values we have processed so far. Our answer revolves around Current Sum being equal to Target.
 
-Decisions
+# 3)Decisions
 Dynamic Programming is all about making the optimal decision. In order to make the optimal decision, we will have to try all decisions first. The MIT lecture on DP (highly recommended) refers to this as the guessing step. My brain works better calling this a decision instead of a guess. Decisions will have to bring us closer to the base case and lead us towards the question we want to answer. Base case is covered in Step 4 but really work in tandem with the decision step.
 
 Question: What decisions do we have to make at each recursive call?
@@ -39,7 +39,8 @@ Should we add the current numbers positive value
 Should we add the current numbers negative value
 As a note, knapsack problems usually don't require us to take all items, thus a usual knapsack decision is to take the item or leave the item.
 
-Base Case
+# 4 Base Case
+
 Base cases need to relate directly to the conditions required by the answer we are seeking. This is why it is important for our decisions to work towards our base cases, as it means our decisions are working towards our answer.
 
 Let's revisit the conditions for our answers.
@@ -61,7 +62,7 @@ If we have considered all the items in our input subset and our current sum is e
 
 On the other hand, if we have considered all the items in our input subset and our current sum is NOT equal to our target, we have only met condition required by our answer. No bueno.
 
-Code it
+# 5 Code it
 If you've thought through all the steps and understand the problem, it's trivial to code the actual solution.
 
  def findTargetSumWays(self, nums, S):
@@ -81,7 +82,8 @@ If you've thought through all the steps and understand the problem, it's trivial
      negative = self.dp(nums, target, index-1, curr_sum + -nums[index])
      
      return positive + negative
-Optimize
+
+# 6 Optimize
 Once we introduce memoization, we will only solve each subproblem ONCE. We can remove recursion altogether and avoid the overhead and potential of a stack overflow by introducing tabulation. It's important to note that the top down recursive and bottom up tabulation methods perform the EXACT same amount of work. The only different is memory. If they peform the exact same amount of work, the conversion just requires us to specify the order in which problems should be solved. This post is really long now so I won't cover these steps here, possibly in a future post.
 
 Memoization Solution for Reference
@@ -107,9 +109,4 @@ class Solution:
         
         self.memo[(index, curr_sum)] = positive + negative
         return self.memo[(index, curr_sum)]
-Leave a comment on what DP problems you would like this type of post for next and upvote this solution if you found it helpful. I'd like to get this to the top because I'm honestly tired of seeing straight optimized tabulated solutions with no THINKING process behind it.
-
-DP IS EASY!
-
-Thanks.
-
+  
