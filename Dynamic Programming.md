@@ -64,7 +64,7 @@ On the other hand, if we have considered all the items in our input subset and o
 
 # 5 Code it
 If you've thought through all the steps and understand the problem, it's trivial to code the actual solution.
-
+```
  def findTargetSumWays(self, nums, S):
      index = len(nums) - 1
      curr_sum = 0
@@ -82,12 +82,12 @@ If you've thought through all the steps and understand the problem, it's trivial
      negative = self.dp(nums, target, index-1, curr_sum + -nums[index])
      
      return positive + negative
-
+```
 # 6 Optimize
 Once we introduce memoization, we will only solve each subproblem ONCE. We can remove recursion altogether and avoid the overhead and potential of a stack overflow by introducing tabulation. It's important to note that the top down recursive and bottom up tabulation methods perform the EXACT same amount of work. The only different is memory. If they peform the exact same amount of work, the conversion just requires us to specify the order in which problems should be solved. This post is really long now so I won't cover these steps here, possibly in a future post.
 
 Memoization Solution for Reference
-
+```
 class Solution:
     def findTargetSumWays(self, nums, S):
         index = len(nums) - 1
@@ -109,4 +109,4 @@ class Solution:
         
         self.memo[(index, curr_sum)] = positive + negative
         return self.memo[(index, curr_sum)]
-  
+  ```
